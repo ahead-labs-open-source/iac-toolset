@@ -39,6 +39,10 @@ variable "bucket_versioning" {
     type = bool
     default = false
 }
+variable "force_destroy" {
+    type = bool
+    default = false
+}
 
 resource "aws_s3_bucket" "s3_bucket" {
     provider = aws.default
@@ -46,6 +50,7 @@ resource "aws_s3_bucket" "s3_bucket" {
     bucket = var.bucket_name
     acl = var.bucket_acl
     tags = var.bucket_tags
+    force_destroy = var.force_destroy
 
     versioning {
         enabled = var.bucket_versioning
