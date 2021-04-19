@@ -68,6 +68,9 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
     restrict_public_buckets = var.block_public_access_cross_accounts
 }
 
+output "arn" {
+    value = aws_s3_bucket.s3_bucket.arn
+}
 output "bucket" {
     value = var.bucket_name
 }
