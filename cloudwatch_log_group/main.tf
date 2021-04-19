@@ -23,7 +23,7 @@ variable "log_group_tags" {
 resource "aws_cloudwatch_log_group" "cloudwatch_builds_log_group" {
     provider = aws.default
 
-    name = "${replace(lookup(var.product, "id"),".","-")}-${var.environment}-build-log-group"
+    name = var.log_group_name
     retention_in_days = 7
     tags = var.log_group_tags
 }
