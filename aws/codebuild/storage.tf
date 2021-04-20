@@ -1,6 +1,6 @@
 // Build artifact buckets for each software product
 module "bucket_codebuild_artifacts" {
-    source = "github.com/aheadlabs/terraform-modules.git//s3_bucket"
+    source = "github.com/aheadlabs/terraform-modules.git//aws/s3_bucket"
 
     providers = {
         aws.default = aws.default
@@ -13,7 +13,7 @@ module "bucket_codebuild_artifacts" {
 
 // Build cache buckets for each software product
 module "bucket_codebuild_cache" {
-    source = "github.com/aheadlabs/terraform-modules.git//s3_bucket"
+    source = "github.com/aheadlabs/terraform-modules.git//aws/s3_bucket"
 
     providers = {
         aws.default = aws.default
