@@ -1,6 +1,6 @@
 # Terraform modules #
 
-This repository contains Terraform modules to be used in any Terraform project in order to simplify things and reuse code.
+Opinionated repository that contains Terraform modules to be used in any Terraform project in order to simplify things and reuse code.
 
 ## More information ##
 
