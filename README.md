@@ -1,6 +1,7 @@
-# Terraform modules #
+# IaC toolset #
 
-Opinionated repository that contains Terraform modules to be used in any Terraform project in order to simplify things and reuse code.
+This is a toolset for Infrastructure-as-Code projects based on Terraform.  
+Contains opinionated modules to be used in any IaC project in order to simplify things and reuse code.
 
 ## More information ##
 
