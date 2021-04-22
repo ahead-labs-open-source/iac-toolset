@@ -36,9 +36,7 @@ variable "git_repository_https_url" {type = string}
 variable "log_group_name" {type = string}
 variable "policy_description" {type = string}
 variable "policy_name" {type = string}
-variable "security_group_ids" {type = list}
 variable "service_role_name" {type = string}
-variable "subnet_ids" {type = set(string)}
 variable "tags" {type = map}
 variable "timeouts" {
     type = map
@@ -47,7 +45,10 @@ variable "timeouts" {
         queue = "480"
     }
 }
-variable "vpc_id" {type = string}
+variable "vpc" {
+    type = map
+    default = {}
+}
 
 // Builds for each software product
 resource "aws_codebuild_project" "codebuild_project" {
@@ -105,10 +106,13 @@ resource "aws_codebuild_project" "codebuild_project" {
         }
     }
 
-    vpc_config {
-        vpc_id = var.vpc_id
-        subnets = var.subnet_ids
-        security_group_ids = var.security_group_ids
+    dynamic "vpc_config" {
+        for_each = var.vpc
+        content{
+            vpc_id = vpc_config.value["vpc_id"]
+            subnets = vpc_config.value["subnets"]
+            security_group_ids = vpc_config.value["security_group_ids"]
+        }
     }
 
     tags = var.tags
