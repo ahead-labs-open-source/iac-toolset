@@ -7,8 +7,8 @@ module "bucket_codebuild_artifacts" {
     }
     
     bucket_name = var.artifacts_bucket_name
-    force_destroy = true
     bucket_tags = var.tags
+    force_destroy = true
 }
 
 // Build cache buckets for each software product

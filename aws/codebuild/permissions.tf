@@ -1,4 +1,4 @@
-// Roles for each build
+// Service roles for each build
 resource "aws_iam_role" "codebuild_pipeline_role" {
     provider = aws.default
 
