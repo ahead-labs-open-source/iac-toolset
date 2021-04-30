@@ -1,6 +1,6 @@
 // Cloudwatch log group for each software product
 module "cloudwatch_builds_log_group" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/cloudwatch_log_group"
+    source = "github.com/aheadlabs/terraform-modules.git//aws/cloudwatch"
     providers = {
         aws.default = aws.default
     }
