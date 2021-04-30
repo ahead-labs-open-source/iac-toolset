@@ -1,4 +1,3 @@
-// Service roles for each application
 resource "aws_iam_role" "eb_application_service_role" {
     provider = aws.default
 

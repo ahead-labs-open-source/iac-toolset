@@ -1,13 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = ">= 3.0"
-      configuration_aliases = [ aws.default ]
-    }
-  }
-}
-
 variable "log_group_name" {
     type = string
 }
@@ -18,14 +8,6 @@ variable "log_group_retention_days" {
 variable "log_group_tags" {
     type = map
     default = {}
-}
-
-resource "aws_cloudwatch_log_group" "cloudwatch_builds_log_group" {
-    provider = aws.default
-
-    name = var.log_group_name
-    retention_in_days = 7
-    tags = var.log_group_tags
 }
 
 output "arn" {
