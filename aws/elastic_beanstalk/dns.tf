@@ -1,5 +1,3 @@
-// DNS records for the Elastic Beanstalk application
-
 resource "aws_route53_record" "dns_record" {
     provider = aws.global
 
