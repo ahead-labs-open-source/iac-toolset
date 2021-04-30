@@ -1,5 +1,3 @@
-// Cloudfront distributions
-
 terraform {
   required_providers {
     aws = {
