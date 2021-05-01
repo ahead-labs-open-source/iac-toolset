@@ -15,6 +15,7 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
             origin_access_identity = aws_cloudfront_origin_access_identity.m_cloudfront_origin_access_identity.cloudfront_access_identity_path
         }
     }
+
     aliases = var.aliases
 
     default_cache_behavior {
@@ -47,10 +48,8 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
       }
     }
 
-    http_version = "http2"
     default_root_object = var.default_root_object
-    is_ipv6_enabled = true
-
     enabled = var.enabled
+    is_ipv6_enabled = true
     tags = var.tags
 }
