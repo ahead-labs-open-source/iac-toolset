@@ -6,3 +6,7 @@ variable "environment_tier" {type = string}
 variable "settings" {type = map}
 variable "stack_name" {type = string}
 variable "tags" {type = map}
+
+output "endpoint_url" {
+    value = aws_elastic_beanstalk_environment.eb_application_environment.endpoint_url
+}

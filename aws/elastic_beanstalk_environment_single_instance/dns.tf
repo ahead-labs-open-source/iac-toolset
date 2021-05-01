@@ -3,8 +3,8 @@ resource "aws_route53_record" "eb_application_environment_dns_record" {
 
     name = var.dns_record_name
     alias {
-        name = aws_elastic_beanstalk_environment.eb_application_environment.cname
-        zone_id = var.elasticbeanstalk_hosted_zone_id
+        name = module.eb_application_environment_distribution.cloudfront_domain_name
+        zone_id = module.eb_application_environment_distribution.cloudfront_domain_zone_id
         evaluate_target_health = true
     }
     type = "A"
