@@ -1,20 +1,18 @@
-resource "aws_cloudfront_origin_access_identity" "m_cloudfront_origin_access_identity" {
-    provider = aws.global
-
-    comment = "access-identity-${var.website_name}"
-}
-
 resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     provider = aws.global
 
     origin {
         domain_name = var.domain_name
-        origin_id = "s3-${var.website_name}"
+        origin_id = "eb-${var.website_name}"
 
-        s3_origin_config {
-            origin_access_identity = aws_cloudfront_origin_access_identity.m_cloudfront_origin_access_identity.cloudfront_access_identity_path
+        custom_origin_config {
+            http_port = 80
+            https_port = 443
+            origin_protocol_policy = "http-only"
+            origin_ssl_protocols = [ "TLSv1.2" ]
         }
     }
+
     aliases = var.aliases
 
     default_cache_behavior {
@@ -32,7 +30,7 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
         }
         smooth_streaming = false
         compress = true
-        target_origin_id = "s3-${var.website_name}"
+        target_origin_id = "eb-${var.website_name}"
     }
 
     viewer_certificate {
@@ -42,15 +40,14 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     }
 
     restrictions {
-      geo_restriction {
-          restriction_type = "none"
-      }
+        geo_restriction {
+            restriction_type = "none"
+        }
     }
 
-    http_version = "http2"
+    comment = var.domain_name
     default_root_object = var.default_root_object
-    is_ipv6_enabled = true
-
     enabled = var.enabled
+    is_ipv6_enabled = true
     tags = var.tags
 }
