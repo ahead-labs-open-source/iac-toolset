@@ -37,10 +37,6 @@ variable "website_index_document" {
     type = set(string)
     default = []
 }
-variable "website_cloudfront_origin_access_identity_arn" {
-    type = string
-    default = null
-}
 
 output "arn" {
     value = aws_s3_bucket.s3_bucket.arn

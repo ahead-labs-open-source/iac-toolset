@@ -28,25 +28,3 @@ resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
     ignore_public_acls = var.block_public_access_any_acls
     restrict_public_buckets = var.block_public_access_cross_accounts
 }
-
-resource "aws_s3_bucket_policy" "web_hosting_bucket_policy" {
-    provider = aws.default
-    count = var.website_cloudfront_origin_access_identity_arn != null ? 1 : 0
-    
-    bucket = aws_s3_bucket.s3_bucket.id
-    policy = <<POLICY
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Principal": {
-                "AWS": "${var.website_cloudfront_origin_access_identity_arn}"
-            },
-            "Action": "s3:GetObject",
-            "Resource": "${aws_s3_bucket.s3_bucket.arn}/*"
-        }
-    ]
-}
-POLICY
-}
