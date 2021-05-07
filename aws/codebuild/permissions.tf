@@ -3,7 +3,7 @@ resource "aws_iam_role" "codebuild_pipeline_role" {
     provider = aws.default
 
     name = var.service_role_name
-    tags = var.tags
+    tags = var.tags    
 
     assume_role_policy = <<EOF
 {
@@ -67,11 +67,26 @@ resource "aws_iam_policy" "codebuild_project_policy" {
                 "${module.bucket_codebuild_artifacts.arn}/*"
             ],
             "Action": [
-                "s3:PutObject",
-                "s3:PutObjectAcl",
+                "s3:GetBucketLocation",
+                "s3:GetObject",
                 "s3:GetObjectAcl",
                 "s3:ListBucket",
-                "s3:GetBucketLocation"
+                "s3:PutObject",
+                "s3:PutObjectAcl"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:s3:::${var.product_id}-${terraform.workspace}-pipeline-artifacts/*"
+            ],
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:GetObjectAcl",
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:PutObjectAcl"
             ]
         },
         {
