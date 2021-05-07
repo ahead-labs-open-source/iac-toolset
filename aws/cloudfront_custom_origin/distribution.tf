@@ -19,14 +19,15 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
         viewer_protocol_policy = "redirect-to-https"
         allowed_methods = ["GET","HEAD"]
         cached_methods = ["GET","HEAD"]
-        default_ttl = 86400
-        max_ttl = 31536000
-        min_ttl = 1
+        default_ttl = 0
+        max_ttl = 0
+        min_ttl = 0
         forwarded_values {
             cookies {
-                forward = "none"
+                forward = "all"
             }
             query_string = false
+            headers = [ "*" ]
         }
         smooth_streaming = false
         compress = true
