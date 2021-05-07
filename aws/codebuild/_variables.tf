@@ -18,6 +18,7 @@ variable "git_repository_https_url" {type = string}
 variable "log_group_name" {type = string}
 variable "policy_description" {type = string}
 variable "policy_name" {type = string}
+variable "product_id" {type = string}
 variable "service_role_name" {type = string}
 variable "tags" {type = map}
 variable "timeouts" {
