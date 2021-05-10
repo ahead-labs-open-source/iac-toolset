@@ -1,5 +1,6 @@
 variable "acm_certificate_arn" {type = string}
 variable "aliases" {type = set(string)}
+variable "custom_error_responses" {type = map}
 variable "default_root_object" {type = string}
 variable "domain_name" {type = string}
 variable "enabled" {type = bool}

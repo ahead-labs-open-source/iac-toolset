@@ -48,6 +48,17 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
       }
     }
 
+    dynamic "custom_error_response" {
+        for_each = var.custom_error_responses
+
+        content {
+            error_caching_min_ttl = custom_error_response.value.error_caching_min_ttl
+            error_code = custom_error_response.value.error_code
+            response_code = custom_error_response.value.response_code
+            response_page_path = custom_error_response.value.response_page_path
+        }
+    }
+
     default_root_object = var.default_root_object
     enabled = var.enabled
     is_ipv6_enabled = true
