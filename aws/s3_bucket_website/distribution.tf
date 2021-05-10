@@ -6,16 +6,17 @@ module "s3_bucket_website_distribution" {
         aws.global = aws.global
     }
 
-    website_name = var.dns_record_name
-    domain_name = aws_s3_bucket.s3_bucket_website.bucket_domain_name
+    acm_certificate_arn = module.s3_bucket_website_certificate.certificate_arn
     aliases = toset([
         var.dns_record_name,
         var.dns_alternate_record_name
     ])
-    acm_certificate_arn = module.s3_bucket_website_certificate.certificate_arn
+    custom_error_responses = var.custom_error_responses
     default_root_object = "index.html"
+    domain_name = aws_s3_bucket.s3_bucket_website.bucket_domain_name
     enabled = true
     tags = var.tags
+    website_name = var.dns_record_name
 }
 
 resource "aws_s3_bucket_policy" "s3_bucket_website_distribution_policy" {
