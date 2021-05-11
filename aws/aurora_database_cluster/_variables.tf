@@ -18,3 +18,8 @@ variable "instance_number" {type = string}
 variable "instance_publicly_accessible" {type = bool}
 
 variable "tags" {type = map}
+
+
+output "cluster_identifier" {
+    value = aws_rds_cluster.rds_cluster.cluster_identifier
+}
