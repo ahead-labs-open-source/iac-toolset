@@ -72,6 +72,15 @@ resource "aws_iam_policy" "codepipeline_pipeline_policy" {
                 "codebuild:BatchGetBuilds",
                 "codebuild:StartBuild"
             ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:lambda:eu-west-1:***REMOVED***:function:ec2-handle-sonarqube-instance"
+            ],
+            "Action": [
+                "lambda:InvokeFunction"
+            ]
         }
     ]
 }
