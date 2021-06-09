@@ -18,6 +18,7 @@ module "bucket_codebuild_cache" {
 
     providers = {
         aws.default = aws.default
+        aws.global = aws.global
     }
     
     bucket_name = var.cache_bucket_name
