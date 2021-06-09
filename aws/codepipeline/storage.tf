@@ -3,6 +3,7 @@ module "bucket_codepipeline_artifacts" {
 
     providers = {
         aws.default = aws.default
+        aws.global = aws.global
     }
     
     bucket_name = var.pipeline_artifacts_bucket_name
