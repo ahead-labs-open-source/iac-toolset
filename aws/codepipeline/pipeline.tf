@@ -30,6 +30,20 @@ resource "aws_codepipeline" "codepipeline" {
     stage {
         name = "Build"
         action {
+            category = "Invoke"
+            owner = "AWS"
+            name = "Warm-up"
+            provider = "Lambda"
+            version = "1"
+            input_artifacts = [ "SourceArtifact" ]
+            output_artifacts = [ "BuildArtifact" ]
+
+            configuration = {
+              "FunctionName" = var.sonarqube_starter_lambda_name
+              "UserParameters" = "start"
+            }
+        }
+        action {
             category = "Build"
             owner = "AWS"
             name = "Build"
@@ -40,6 +54,20 @@ resource "aws_codepipeline" "codepipeline" {
 
             configuration = {
               "ProjectName" = var.stage_build_config.ProjectName
+            }
+        }
+        action {
+            category = "Invoke"
+            owner = "AWS"
+            name = "Tear-down"
+            provider = "Lambda"
+            version = "1"
+            input_artifacts = [ "SourceArtifact" ]
+            output_artifacts = [ "BuildArtifact" ]
+
+            configuration = {
+              "FunctionName" = var.sonarqube_starter_lambda_name
+              "UserParameters" = "stop"
             }
         }
     }

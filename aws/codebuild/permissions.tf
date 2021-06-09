@@ -78,6 +78,23 @@ resource "aws_iam_policy" "codebuild_project_policy" {
         {
             "Effect": "Allow",
             "Resource": [
+                "arn:aws:s3:::${var.product_id}-${terraform.workspace}-website/*",
+                "arn:aws:s3:::${var.product_id}-${terraform.workspace}-website"
+            ],
+            "Action": [
+                "s3:GetBucketLocation",
+                "s3:GetObject",
+                "s3:GetObjectAcl",
+                "s3:ListBucket",
+                "s3:PutObject",
+                "s3:PutObjectAcl",
+                "s3:PutObjectVersionAcl",
+                "s3:DeleteObject"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
                 "arn:aws:s3:::${var.product_id}-${terraform.workspace}-pipeline-artifacts/*"
             ],
             "Action": [
@@ -92,15 +109,9 @@ resource "aws_iam_policy" "codebuild_project_policy" {
         {
             "Effect": "Allow",
             "Action": [
-                "ec2:CreateNetworkInterface",
-                "ec2:DescribeDhcpOptions",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DeleteNetworkInterface",
-                "ec2:DescribeSubnets",
-                "ec2:DescribeSecurityGroups",
-                "ec2:DescribeVpcs"
+                "cloudfront:CreateInvalidation"
             ],
-            "Resource": "*"
+            "Resource": "arn:aws:cloudfront::***REMOVED***:distribution/*"
         }
     ]
 }
