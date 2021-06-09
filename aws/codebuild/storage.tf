@@ -4,6 +4,7 @@ module "bucket_codebuild_artifacts" {
 
     providers = {
         aws.default = aws.default
+        aws.global = aws.global
     }
     
     bucket_name = var.artifacts_bucket_name
