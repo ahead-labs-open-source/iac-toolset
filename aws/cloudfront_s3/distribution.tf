@@ -34,6 +34,46 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
         smooth_streaming = false
         compress = true
         target_origin_id = "s3-${var.website_name}"
+
+        dynamic "lambda_function_association" {
+            for_each = contains(var.lambda_functions.viewer-request.environment,terraform.workspace) == true ? toset([1]) : toset([])
+
+            content {
+                event_type = var.lambda_functions.viewer-request.event_type
+                include_body = var.lambda_functions.viewer-request.include_body
+                lambda_arn = var.lambda_functions.viewer-request.lambda_arn
+            }
+        }
+
+        dynamic "lambda_function_association" {
+            for_each = contains(var.lambda_functions.viewer-response.environment,terraform.workspace) == true ? toset([1]) : toset([])
+
+            content {
+                event_type = var.lambda_functions.viewer-response.event_type
+                include_body = var.lambda_functions.viewer-response.include_body
+                lambda_arn = var.lambda_functions.viewer-response.lambda_arn
+            }
+        }
+
+        dynamic "lambda_function_association" {
+            for_each = contains(var.lambda_functions.origin-request.environment,terraform.workspace) == true ? toset([1]) : toset([])
+
+            content {
+                event_type = var.lambda_functions.origin-request.event_type
+                include_body = var.lambda_functions.origin-request.include_body
+                lambda_arn = var.lambda_functions.origin-request.lambda_arn
+            }
+        }
+
+        dynamic "lambda_function_association" {
+            for_each = contains(var.lambda_functions.origin-response.environment,terraform.workspace) == true ? toset([1]) : toset([])
+
+            content {
+                event_type = var.lambda_functions.origin-response.event_type
+                include_body = var.lambda_functions.origin-response.include_body
+                lambda_arn = var.lambda_functions.origin-response.lambda_arn
+            }
+        }
     }
 
     viewer_certificate {
@@ -63,4 +103,52 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     enabled = var.enabled
     is_ipv6_enabled = true
     tags = var.tags
+}
+
+resource "aws_lambda_permission" "m_lambda_edge_permission_viewer_request" {
+    count = contains(var.lambda_functions.viewer-request.environment,terraform.workspace) == true ? 1 : 0
+
+    provider = aws.global
+
+    statement_id = "m_lambda_edge_permission_viewer_request_permission_${terraform.workspace}"
+    action = "lambda:GetFunction"
+    function_name = var.lambda_functions.viewer-request.lambda_arn_bare
+    principal = "edgelambda.amazonaws.com"
+    qualifier = var.lambda_functions.viewer-request.version
+}
+
+resource "aws_lambda_permission" "m_lambda_edge_permission_viewer_response" {
+    count = contains(var.lambda_functions.viewer-response.environment,terraform.workspace) == true ? 1 : 0
+
+    provider = aws.global
+
+    statement_id = "m_lambda_edge_permission_viewer_response_permission_${terraform.workspace}"
+    action = "lambda:GetFunction"
+    function_name = var.lambda_functions.viewer-response.lambda_arn_bare
+    principal = "edgelambda.amazonaws.com"
+    qualifier = var.lambda_functions.viewer-response.version
+}
+
+resource "aws_lambda_permission" "m_lambda_edge_permission_origin_request" {
+    count = contains(var.lambda_functions.origin-request.environment,terraform.workspace) == true ? 1 : 0
+
+    provider = aws.global
+
+    statement_id = "m_lambda_edge_permission_origin_request_permission_${terraform.workspace}"
+    action = "lambda:GetFunction"
+    function_name = var.lambda_functions.origin-request.lambda_arn_bare
+    principal = "edgelambda.amazonaws.com"
+    qualifier = var.lambda_functions.origin-request.version
+}
+
+resource "aws_lambda_permission" "m_lambda_edge_permission_origin_response" {
+    count = contains(var.lambda_functions.origin-response.environment,terraform.workspace) == true ? 1 : 0
+
+    provider = aws.global
+
+    statement_id = "m_lambda_edge_permission_origin_response_permission_${terraform.workspace}"
+    action = "lambda:GetFunction"
+    function_name = var.lambda_functions.origin-response.lambda_arn_bare
+    principal = "edgelambda.amazonaws.com"
+    qualifier = var.lambda_functions.origin-response.version
 }

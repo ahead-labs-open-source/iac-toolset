@@ -3,6 +3,10 @@ variable "aliases" {type = set(string)}
 variable "default_root_object" {type = string}
 variable "domain_name" {type = string}
 variable "enabled" {type = bool}
+variable "lambda_functions" {
+    type = map
+    default = {}
+}
 variable "website_name" {type = string}
 variable "tags" {type = map}
 

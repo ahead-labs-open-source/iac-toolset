@@ -15,6 +15,7 @@ module "s3_bucket_website_distribution" {
     default_root_object = "index.html"
     domain_name = aws_s3_bucket.s3_bucket_website.bucket_domain_name
     enabled = true
+    lambda_functions = var.lambda_functions
     tags = var.tags
     website_name = var.dns_record_name
 }
