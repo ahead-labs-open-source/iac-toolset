@@ -30,13 +30,13 @@ resource "aws_codepipeline" "codepipeline" {
     stage {
         name = "Build"
         action {
+            run_order = 1
             category = "Invoke"
             owner = "AWS"
             name = "Warm-up"
             provider = "Lambda"
             version = "1"
             input_artifacts = [ "SourceArtifact" ]
-            output_artifacts = [ "BuildArtifact" ]
 
             configuration = {
               "FunctionName" = var.sonarqube_starter_lambda_name
@@ -44,19 +44,20 @@ resource "aws_codepipeline" "codepipeline" {
             }
         }
         action {
+            run_order = 2
             category = "Build"
             owner = "AWS"
             name = "Build"
             provider = "CodeBuild"
             version = "1"
             input_artifacts = [ "SourceArtifact" ]
-            output_artifacts = [ "BuildArtifact" ]
 
             configuration = {
               "ProjectName" = var.stage_build_config.ProjectName
             }
         }
         action {
+            run_order = 3
             category = "Invoke"
             owner = "AWS"
             name = "Tear-down"

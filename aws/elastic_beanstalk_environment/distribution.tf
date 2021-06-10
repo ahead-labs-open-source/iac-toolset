@@ -14,5 +14,6 @@ module "eb_application_environment_distribution" {
     acm_certificate_arn = module.eb_application_environment_certificate.certificate_arn
     default_root_object = "index.html"
     enabled = true
+    lambda_functions = var.lambda_functions
     tags = var.tags
 }

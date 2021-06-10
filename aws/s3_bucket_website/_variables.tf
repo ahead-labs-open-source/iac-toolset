@@ -17,6 +17,10 @@ variable "force_destroy" {
     type = bool
     default = false
 }
+variable "lambda_functions" {
+    type = map
+    default = {}
+}
 variable "tags" {
     type = map
     default = {}
