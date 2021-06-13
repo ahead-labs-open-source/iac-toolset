@@ -51,6 +51,7 @@ resource "aws_codepipeline" "codepipeline" {
             provider = "CodeBuild"
             version = "1"
             input_artifacts = [ "SourceArtifact" ]
+            output_artifacts = [ "BuildArtifact" ]
 
             configuration = {
               "ProjectName" = var.stage_build_config.ProjectName
@@ -64,7 +65,6 @@ resource "aws_codepipeline" "codepipeline" {
             provider = "Lambda"
             version = "1"
             input_artifacts = [ "SourceArtifact" ]
-            output_artifacts = [ "BuildArtifact" ]
 
             configuration = {
               "FunctionName" = var.sonarqube_starter_lambda_name
