@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "s3_bucket" {
-    provider = aws.default
+    provider = aws.createat
 
     bucket = var.bucket_name
     acl = var.bucket_acl
@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "s3_bucket" {
 }
 
 resource "aws_s3_bucket_public_access_block" "s3_bucket_public_access_block" {
-    provider = aws.default
+    provider = aws.createat
 
     bucket = aws_s3_bucket.s3_bucket.id
 
