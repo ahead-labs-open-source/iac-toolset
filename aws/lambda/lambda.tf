@@ -1,0 +1,75 @@
+resource "aws_iam_role" "lambda_execution_role" {
+    name = "lambda-${var.function_name}-execution-role"
+    path = "/service-role/"
+    tags = var.tags
+
+    assume_role_policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": [
+                    "lambda.amazonaws.com"
+                ]
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy" "lambda_log_policy" {
+    name = "lambda-${var.function_name}-log-policy"
+    role = aws_iam_role.lambda_execution_role.id
+    provider = aws.createat
+
+    policy = jsonencode(
+        {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": "logs:CreateLogGroup",
+                    "Resource": "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "logs:CreateLogStream",
+                        "logs:PutLogEvents"
+                    ],
+                    "Resource": [
+                        "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${aws_lambda_function.lambda_function.id}:*"
+                    ]
+                }
+            ]
+        }
+    )
+}
+
+resource "aws_iam_role_policy" "lambda_custom_policy" {
+    count = var.policy == "" ? 0 : 1
+
+    name = "lambda-${var.function_name}-custom-policy"
+    role = aws_iam_role.lambda_execution_role.id
+
+    policy = var.policy
+}
+
+resource "aws_lambda_function" "lambda_function" {
+    provider = aws.createat
+    
+    description = var.function_description
+    function_name = var.function_name
+    handler = var.handler
+    publish = false
+    runtime = var.runtime
+    role = aws_iam_role.lambda_execution_role.arn
+    s3_bucket = var.source_code_s3_bucket
+    s3_key = var.source_code_s3_object_key
+    tags = var.tags
+    timeout = var.timeout
+}
