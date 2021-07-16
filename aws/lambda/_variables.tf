@@ -14,7 +14,7 @@ variable "policy" {
 variable "runtime" {
     type = string
 }
-variable "sns_topic_arn_trigerred_by" {
+variable "sns_topic_arn_triggered_by" {
     type = string
 }
 variable "source_code_s3_bucket" {
