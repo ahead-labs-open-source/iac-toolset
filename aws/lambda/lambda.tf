@@ -73,3 +73,12 @@ resource "aws_lambda_function" "lambda_function" {
     tags = var.tags
     timeout = var.timeout
 }
+
+resource "aws_lambda_permission" "lambda_allow_sns" {
+    count = var.sns_topic_arn_trigerred_by == "" ? 0 : 1
+    action        = "lambda:InvokeFunction"
+    function_name = var.function_name
+    principal     = "sns.amazonaws.com"
+    source_arn    = var.sns_topic_arn_trigerred_by
+}
+
