@@ -80,5 +80,6 @@ resource "aws_lambda_permission" "lambda_allow_sns" {
     function_name = var.function_name
     principal     = "sns.amazonaws.com"
     source_arn    = var.sns_topic_arn_trigerred_by
+    statement_id = "lambda-allow-sns-permission"
 }
 
