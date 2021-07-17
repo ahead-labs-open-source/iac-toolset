@@ -16,3 +16,10 @@ variable "pipeline_role_name" {type = string}
 variable "policy_name" {type = string}
 variable "policy_description" {type = string}
 variable "tags" {type = map}
+
+output "pipeline_id" {
+    value = aws_codepipeline.codepipeline.id
+}
+output "pipeline_arn" {
+    value = aws_codepipeline.codepipeline.arn
+}
