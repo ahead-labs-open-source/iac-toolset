@@ -3,7 +3,7 @@ terraform {
     aws = {
       source  = "hashicorp/aws"
       version = ">= 3.0"
-      configuration_aliases = [ aws.default, aws.global ]
+      configuration_aliases = [ aws.default, aws.global, aws.createat ]
     }
   }
 }
