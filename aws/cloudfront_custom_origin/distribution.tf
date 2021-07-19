@@ -19,8 +19,8 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
         viewer_protocol_policy = "redirect-to-https"
         allowed_methods = ["GET","HEAD"]
         cached_methods = ["GET","HEAD"]
-        default_ttl = 0
-        max_ttl = 0
+        default_ttl = 86400
+        max_ttl = 31536000
         min_ttl = 0
         forwarded_values {
             cookies {
@@ -77,7 +77,7 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     viewer_certificate {
         acm_certificate_arn = var.acm_certificate_arn
         ssl_support_method = "sni-only"
-        minimum_protocol_version = "TLSv1.2_2019"
+        minimum_protocol_version = "TLSv1.2_2021"
     }
 
     restrictions {
