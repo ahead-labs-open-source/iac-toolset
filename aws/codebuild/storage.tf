@@ -5,6 +5,7 @@ module "bucket_codebuild_artifacts" {
     providers = {
         aws.default = aws.default
         aws.global = aws.global
+        aws.createat = aws.default
     }
     
     bucket_name = var.artifacts_bucket_name
@@ -19,6 +20,7 @@ module "bucket_codebuild_cache" {
     providers = {
         aws.default = aws.default
         aws.global = aws.global
+        aws.createat = aws.default
     }
     
     bucket_name = var.cache_bucket_name
