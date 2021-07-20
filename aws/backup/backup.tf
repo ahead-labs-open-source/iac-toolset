@@ -26,3 +26,11 @@ resource "aws_backup_selection" "backup_selection" {
 
     resources = var.backup_resources
 }
+
+resource "aws_backup_vault_notifications" "backup" {
+    count = var.notification_sns_topic_arn == null ? 0 : 1
+
+    backup_vault_name = aws_backup_vault.backup_vault.id
+    sns_topic_arn = var.notification_sns_topic_arn
+    backup_vault_events = var.notification_vault_events
+}
