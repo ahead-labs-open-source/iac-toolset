@@ -51,6 +51,28 @@ data "aws_iam_policy_document" "sns_codepipeline_notifications_policy" {
     }
 
     dynamic "statement"{
+        for_each = var.allow_backup_notifications == true ? [1] : []
+
+        content {
+            sid = "__backup_notifications_id"
+            effect = "Allow"
+
+            principals {
+                type = "Service"
+                identifiers = ["backup.amazonaws.com"]
+            }
+
+            actions = [
+                "SNS:Publish"
+            ]
+
+            resources = [
+                aws_sns_topic.sns_codepipeline_notifications.arn
+            ]            
+        }
+    }
+
+    dynamic "statement"{
         for_each = var.allow_codestar_notifications == true ? [1] : []
 
         content {

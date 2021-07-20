@@ -16,6 +16,10 @@ variable "tags" {
     type = map
     default = {}
 }
+variable "allow_backup_notifications" {
+    type = bool
+    default = false
+}
 variable "allow_codestar_notifications" {
     type = bool
     default = false
