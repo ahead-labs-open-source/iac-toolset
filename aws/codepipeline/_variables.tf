@@ -31,7 +31,6 @@ variable "notification_sns_topic_arn" {
 }
 variable "sonarqube_starter_lambda_name" {
     type = string
-    default = "ec2-handle-sonarqube-instance"
 }
 variable "stage_build_config" {type = map}
 variable "stage_deploy_config_elasticbeanstalk" {type = map}

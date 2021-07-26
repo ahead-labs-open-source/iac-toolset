@@ -105,13 +105,6 @@ resource "aws_iam_policy" "codebuild_project_policy" {
                 "s3:PutObject",
                 "s3:PutObjectAcl"
             ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "cloudfront:CreateInvalidation"
-            ],
-            "Resource": "arn:aws:cloudfront::***REMOVED***:distribution/*"
         }
     ]
 }
