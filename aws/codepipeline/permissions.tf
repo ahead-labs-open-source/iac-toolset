@@ -76,7 +76,7 @@ resource "aws_iam_policy" "codepipeline_pipeline_policy" {
         {
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:lambda:eu-west-1:***REMOVED***:function:ec2-handle-sonarqube-instance"
+                "arn:aws:lambda:${var.aws_region}:${var.aws_account_id}:function:${var.sonarqube_starter_lambda_name}"
             ],
             "Action": [
                 "lambda:InvokeFunction"
