@@ -13,9 +13,18 @@ variable "codebuild_source_version" {
 variable "codecommit_repository" {type = string}
 variable "compute_specs" {type = map}
 variable "compute_os" {type = string}
-variable "environment_variables_parameter_store" {type = map}
-variable "environment_variables_plaintext" {type = map}
-variable "environment_variables_secrets_manager" {type = map}
+variable "environment_variables_parameter_store" {
+    type = map
+    default = {}
+}
+variable "environment_variables_plaintext" {
+    type = map
+    default = {}
+}
+variable "environment_variables_secrets_manager" {
+    type = map
+    default = {}
+}
 variable "git_repository_https_url" {type = string}
 variable "log_group_name" {type = string}
 variable "policy_description" {type = string}
