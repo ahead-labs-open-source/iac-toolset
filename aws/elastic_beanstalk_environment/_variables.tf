@@ -1,4 +1,8 @@
 variable "application_name" {type = string}
+variable "distribution_allowed_methods" {
+    type = list
+    default = ["GET","HEAD"]
+}
 variable "dns_zone_id" {}
 variable "dns_record_name" {type = string}
 variable "elasticbeanstalk_hosted_zone_id" {}

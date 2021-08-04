@@ -1,5 +1,9 @@
 variable "acm_certificate_arn" {type = string}
 variable "aliases" {type = set(string)}
+variable "allowed_methods" {
+    type = list
+    default = ["GET","HEAD"]
+}
 variable "default_root_object" {type = string}
 variable "domain_name" {type = string}
 variable "enabled" {type = bool}

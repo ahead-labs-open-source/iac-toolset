@@ -12,6 +12,7 @@ module "eb_application_environment_distribution" {
         var.dns_record_name
     ])
     acm_certificate_arn = module.eb_application_environment_certificate.certificate_arn
+    allowed_methods = var.distribution_allowed_methods
     default_root_object = "index.html"
     enabled = true
     lambda_functions = var.lambda_functions

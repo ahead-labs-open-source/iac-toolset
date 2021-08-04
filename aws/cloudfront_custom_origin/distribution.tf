@@ -17,7 +17,7 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
 
     default_cache_behavior {
         viewer_protocol_policy = "redirect-to-https"
-        allowed_methods = ["GET","HEAD"]
+        allowed_methods = var.allowed_methods
         cached_methods = ["GET","HEAD"]
         default_ttl = 86400
         max_ttl = 31536000
