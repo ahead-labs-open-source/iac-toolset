@@ -14,6 +14,9 @@ variable "tags" {type = map}
 output "aliases" {
     value = var.aliases
 }
+output "cloudfront_distribution_id" {
+    value = aws_cloudfront_distribution.m_cloudfront_distribution.id
+}
 output "cloudfront_domain_name" {
     value = aws_cloudfront_distribution.m_cloudfront_distribution.domain_name
 }

@@ -15,6 +15,9 @@ variable "settings" {type = map}
 variable "stack_name" {type = string}
 variable "tags" {type = map}
 
+output "distribution_id" {
+    value = module.eb_application_environment_distribution.cloudfront_distribution_id
+}
 output "endpoint_url" {
     value = aws_elastic_beanstalk_environment.eb_application_environment.endpoint_url
 }

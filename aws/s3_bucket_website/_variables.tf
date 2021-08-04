@@ -29,3 +29,7 @@ variable "website_index_document" {
     type = string
     default = "index.html"
 }
+
+output "distribution_id" {
+    value = module.s3_bucket_website_distribution.cloudfront_distribution_id
+}
