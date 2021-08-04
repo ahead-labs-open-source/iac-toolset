@@ -20,6 +20,25 @@ resource "aws_codebuild_project" "codebuild_project" {
             content {
                 name = upper(environment_variable.key)
                 value = environment_variable.value
+                type = "PLAINTEXT"
+            }
+        }
+
+        dynamic "environment_variable" {
+            for_each = var.environment_variables_parameter_store
+            content {
+                name = upper(environment_variable.key)
+                value = environment_variable.value
+                type = "PARAMETER_STORE"
+            }
+        }
+
+        dynamic "environment_variable" {
+            for_each = var.environment_variables_secrets_manager
+            content {
+                name = upper(environment_variable.key)
+                value = environment_variable.value
+                type = "SECRETS_MANAGER"
             }
         }
     }
