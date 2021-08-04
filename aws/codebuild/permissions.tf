@@ -105,6 +105,15 @@ resource "aws_iam_policy" "codebuild_project_policy" {
                 "s3:PutObject",
                 "s3:PutObjectAcl"
             ]
+        },
+        {
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:ssm:${data.aws_region.current}:${data.aws_caller_identity.current}:parameter/*"
+            ],
+            "Action": [
+                "ssm:GetParameters"
+            ]
         }
     ]
 }
