@@ -109,7 +109,7 @@ resource "aws_iam_policy" "codebuild_project_policy" {
         {
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:ssm:${data.aws_region.current}:${data.aws_caller_identity.current}:parameter/*"
+                "arn:aws:ssm:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:parameter/*"
             ],
             "Action": [
                 "ssm:GetParameters"
