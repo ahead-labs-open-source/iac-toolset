@@ -29,7 +29,7 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
             cookies {
                 forward = "none"
             }
-            query_string = false
+            query_string = true
         }
         smooth_streaming = false
         compress = true
