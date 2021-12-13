@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_iam_role" "lambda_execution_role_custom" {
-    count = var.assume_role_policy != "" ? 1 : 0
+    count = var.assume_role_policy == "" ? 0 : 1
     name = "lambda-${var.function_name}-execution-role"
     path = "/service-role/"
     tags = var.tags
@@ -65,6 +65,7 @@ resource "aws_iam_role_policy" "lambda_custom_policy" {
 
     name = "lambda-${var.function_name}-custom-policy"
     role = aws_iam_role.lambda_execution_role.id
+    role = var.assume_role_policy == "" ? aws_iam_role.lambda_execution_role.id : aws_iam_role.lambda_execution_role_custom.id
 
     policy = var.policy
 }
