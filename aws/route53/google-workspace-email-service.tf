@@ -26,7 +26,8 @@ resource "aws_route53_record" "dns_record_txt_google" {
     zone_id = var.zone_id
     name = ""
     records = [
-        "google-site-verification=${var.google_workspace_site_verification}"
+        "google-site-verification=${var.google_workspace_site_verification}",
+        "v=spf1 include:_spf.google.com ~all"
     ]
     ttl = 3600
     type = "TXT"
