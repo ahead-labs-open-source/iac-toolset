@@ -33,7 +33,7 @@ resource "aws_iam_role" "lambda_execution_role_custom" {
 
 resource "aws_iam_role_policy" "lambda_log_policy" {
     name = "lambda-${var.function_name}-log-policy"
-    role = aws_iam_role.lambda_execution_role.id
+    role = var.assume_role_policy == "" ? aws_iam_role.lambda_execution_role[0].id : aws_iam_role.lambda_execution_role_custom[0].id
     provider = aws.createat
 
     policy = jsonencode(
