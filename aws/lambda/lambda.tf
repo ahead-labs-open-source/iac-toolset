@@ -1,4 +1,5 @@
 resource "aws_iam_role" "lambda_execution_role" {
+    count = var.assume_role_policy == "" ? 1 : 0
     name = "lambda-${var.function_name}-execution-role"
     path = "/service-role/"
     tags = var.tags
@@ -19,6 +20,15 @@ resource "aws_iam_role" "lambda_execution_role" {
     ]
 }
 EOF
+}
+
+resource "aws_iam_role" "lambda_execution_role_custom" {
+    count = var.assume_role_policy == "" ? 0 : 1
+    name = "lambda-${var.function_name}-execution-role"
+    path = "/service-role/"
+    tags = var.tags
+
+    assume_role_policy = var.assume_role_policy
 }
 
 resource "aws_iam_role_policy" "lambda_log_policy" {

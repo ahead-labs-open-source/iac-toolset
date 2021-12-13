@@ -1,3 +1,7 @@
+variable "assume_role_policy" {
+    type = string
+    default = ""
+}
 variable "handler" {
     type = string
     default = "index.handler"
