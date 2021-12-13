@@ -64,7 +64,6 @@ resource "aws_iam_role_policy" "lambda_custom_policy" {
     count = var.policy == "" ? 0 : 1
 
     name = "lambda-${var.function_name}-custom-policy"
-    role = aws_iam_role.lambda_execution_role.id
     role = var.assume_role_policy == "" ? aws_iam_role.lambda_execution_role.id : aws_iam_role.lambda_execution_role_custom.id
 
     policy = var.policy
