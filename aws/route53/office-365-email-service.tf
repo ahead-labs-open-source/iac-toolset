@@ -1,6 +1,6 @@
 // Generates mandatory DNS records for the Microsoft Office 365 e-mail service
 
-resource "aws_route53_record" "dns_record_mx" {
+resource "aws_route53_record" "dns_record_mx_o365" {
     count = var.office_365_email == true ? 1 : 0
 
     provider = aws.global
@@ -12,7 +12,7 @@ resource "aws_route53_record" "dns_record_mx" {
     type = "MX"
 }
 
-resource "aws_route53_record" "dns_record_cname" {
+resource "aws_route53_record" "dns_record_cname_o365" {
     count = var.office_365_email == true ? 1 : 0
 
     provider = aws.global
@@ -24,7 +24,7 @@ resource "aws_route53_record" "dns_record_cname" {
     type = "CNAME"
 }
 
-resource "aws_route53_record" "dns_record_txt" {
+resource "aws_route53_record" "dns_record_txt_o365" {
     count = var.office_365_email == true ? 1 : 0
     
     provider = aws.global
