@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_iam_role" "lambda_execution_role_custom" {
-    count = var.assume_role_policy == "" ? 0 : 1
+    count = var.assume_role_policy != "" ? 1 : 0
     name = "lambda-${var.function_name}-execution-role"
     path = "/service-role/"
     tags = var.tags
