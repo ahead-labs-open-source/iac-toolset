@@ -77,7 +77,7 @@ resource "aws_lambda_function" "lambda_function" {
     handler = var.handler
     publish = false
     runtime = var.runtime
-    role = var.assume_role_policy == "" ? aws_iam_role.lambda_execution_role[0].id : aws_iam_role.lambda_execution_role_custom[0].id
+    role = var.assume_role_policy == "" ? aws_iam_role.lambda_execution_role[0].arn : aws_iam_role.lambda_execution_role_custom[0].arn
     s3_bucket = var.source_code_s3_bucket
     s3_key = var.source_code_s3_object_key
     tags = var.tags
