@@ -2,6 +2,10 @@ variable "handler" {
     type = string
     default = "index.handler"
 }
+variable "environment_variables" {
+    type = map
+    default = {}
+}
 variable "function_name" {
     type = string
 }
