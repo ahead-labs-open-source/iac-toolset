@@ -54,9 +54,6 @@ resource "aws_lambda_function" "lambda_cloudfront_function" {
     provider = aws.createat
     
     description = var.function_description
-    environment {
-      variables = var.environment_variables
-    }
     function_name = var.function_name
     handler = var.handler
     publish = true
