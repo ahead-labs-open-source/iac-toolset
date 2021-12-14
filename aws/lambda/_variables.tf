@@ -2,6 +2,10 @@ variable "assume_role_policy" {
     type = string
     default = ""
 }
+variable "environment_variables" {
+    type = map
+    default = {}
+}
 variable "handler" {
     type = string
     default = "index.handler"
