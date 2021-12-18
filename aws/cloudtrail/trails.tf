@@ -1,6 +1,6 @@
 resource "aws_cloudtrail" "trail" {
     provider = aws.default    
-    for_each = var.trails
+    for_each = var.cloudtrails
 
     name = "${each.value.name}-${terraform.workspace}-trail"
     s3_bucket_name = module.s3_bucket_trails.bucket

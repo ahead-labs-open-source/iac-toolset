@@ -29,11 +29,11 @@ variable "bucket_versioning" {
     type = bool
     default = false
 }
+variable "cloudtrails" {
+    type = map
+    default = {}
+}
 variable "force_destroy" {
     type = bool
     default = false
-}
-variable "trails" {
-    type = map
-    default = {}
 }
