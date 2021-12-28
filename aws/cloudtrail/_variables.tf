@@ -34,7 +34,7 @@ variable "cloudtrails" {
     default = {}
 }
 variable "event_selector_values" {
-    type = string
+    type = list
 }
 variable "force_destroy" {
     type = bool
