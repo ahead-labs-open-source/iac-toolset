@@ -10,7 +10,7 @@ resource "aws_cloudtrail" "trail" {
     event_selector {
       data_resource {
         type = "${each.value.event_selector_type}"
-        values = "${each.value.event_selector_values}"
+        values = "${var.event_selector_values}"
       }
       read_write_type = "${each.value.event_selector_read_write_type}"
     }

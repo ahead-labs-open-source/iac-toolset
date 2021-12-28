@@ -33,6 +33,9 @@ variable "cloudtrails" {
     type = map
     default = {}
 }
+variable "event_selector_values" {
+    type = string
+}
 variable "force_destroy" {
     type = bool
     default = false
