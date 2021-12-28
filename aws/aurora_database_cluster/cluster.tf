@@ -1,4 +1,6 @@
 resource "aws_rds_cluster" "rds_cluster" {
+    allow_major_version_upgrade = var.cluster_allow_major_version_upgrade
+    apply_immediately = var.cluster_apply_immediately
     availability_zones = var.cluster_availability_zones
     backup_retention_period = var.cluster_backup_retention_period
     cluster_identifier = var.cluster_identifier

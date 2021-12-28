@@ -1,3 +1,5 @@
+variable "cluster_allow_major_version_upgrade" {type=bool}
+variable "cluster_apply_immediately" {type=bool}
 variable "cluster_availability_zones" {type = set(string)}
 variable "cluster_backup_retention_period" {type = number}
 variable "cluster_enabled_cloudwatch_logs_exports" {type = set(string)}
