@@ -1,4 +1,4 @@
-// Generates mandatory DNS records for the Microsoft Office 365 e-mail service
+// Generates mandatory DNS records for the Google Workspace e-mail service
 
 resource "aws_route53_record" "dns_record_mx_google" {
     count = var.google_workspace_email == true ? 1 : 0
