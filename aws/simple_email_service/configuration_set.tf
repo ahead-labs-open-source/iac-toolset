@@ -2,6 +2,8 @@
 
 resource "aws_ses_configuration_set" "ses_configuration_set" {
     name = "${replace(aws_ses_domain_identity.ses_domain.domain, ".", "-")}-configuration-set"
+    
+    reputation_metrics_enabled = var.email_reputation_metrics_enabled
     delivery_options {
         tls_policy = var.configuration_set_tls
     }
