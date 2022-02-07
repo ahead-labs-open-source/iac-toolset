@@ -33,7 +33,7 @@ resource "aws_route53_record" "dns_record_txt_o365" {
     name = ""
     records = [ 
         "MS=ms${var.office_365_email_msid}", 
-        "v=spf1 include:spf.protection.outlook.com ~all" ]
+        "v=spf1 include:spf.protection.outlook.com ${var.spf_custom} ~all" ]
     ttl = 3600
     type = "TXT"
 }
