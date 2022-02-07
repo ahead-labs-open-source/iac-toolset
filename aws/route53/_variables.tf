@@ -14,8 +14,12 @@ variable "google_workspace_email" {
     type = bool
     default = false
 }
-
 variable "google_workspace_site_verification" {
+    type = string
+    default = ""
+}
+
+variable "spf_custom" {
     type = string
     default = ""
 }
