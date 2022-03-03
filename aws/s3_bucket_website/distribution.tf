@@ -13,6 +13,7 @@ module "s3_bucket_website_distribution" {
     ])
     custom_error_responses = var.custom_error_responses
     default_root_object = "index.html"
+    description = var.description
     domain_name = aws_s3_bucket.s3_bucket_website.bucket_domain_name
     enabled = true
     lambda_functions = var.lambda_functions

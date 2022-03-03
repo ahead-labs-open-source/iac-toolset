@@ -5,6 +5,10 @@ variable "allowed_methods" {
     default = ["GET","HEAD"]
 }
 variable "default_root_object" {type = string}
+variable "description" {
+    type = string
+    default = ""
+}
 variable "domain_name" {type = string}
 variable "enabled" {type = bool}
 variable "lambda_functions" {

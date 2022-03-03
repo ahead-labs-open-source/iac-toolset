@@ -1,4 +1,8 @@
 variable "application_name" {type = string}
+variable "description" {
+    type = string
+    default = ""
+}
 variable "distribution_allowed_methods" {
     type = list
     default = ["GET","HEAD"]
