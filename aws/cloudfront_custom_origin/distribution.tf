@@ -1,6 +1,8 @@
 resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     provider = aws.global
 
+    comment = var.description
+
     origin {
         domain_name = var.domain_name
         origin_id = "eb-${var.website_name}"

@@ -7,6 +7,8 @@ resource "aws_cloudfront_origin_access_identity" "m_cloudfront_origin_access_ide
 resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
     provider = aws.global
 
+    comment = var.description
+
     origin {
         domain_name = var.domain_name
         origin_id = "s3-${var.website_name}"

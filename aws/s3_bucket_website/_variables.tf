@@ -10,6 +10,10 @@ variable "bucket_versioning" {
     default = false
 }
 variable "custom_error_responses" {type = map}
+variable "description" {
+    type = string
+    default = ""
+}
 variable "dns_alternate_record_name" {type = string}
 variable "dns_record_name" {type = string}
 variable "dns_zone_id" {type = string}

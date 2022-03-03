@@ -14,6 +14,7 @@ module "eb_application_environment_distribution" {
     acm_certificate_arn = module.eb_application_environment_certificate.certificate_arn
     allowed_methods = var.distribution_allowed_methods
     default_root_object = "index.html"
+    description = var.description
     enabled = true
     lambda_functions = var.lambda_functions
     tags = var.tags
