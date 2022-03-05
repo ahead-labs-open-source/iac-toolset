@@ -1,3 +1,4 @@
+// https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html
 variable "compute_specs" {
     type = map
     default = {
