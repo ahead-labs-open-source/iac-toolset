@@ -29,6 +29,7 @@ variable "compute_os" {
     default = {
         al2x64 = "aws/codebuild/amazonlinux2-x86_64-standard:3.0"
         ubuntu2004 = "aws/codebuild/standard:5.0"
+        ubuntu2204 = "aws/codebuild/standard:6.0"
     }
 }
 output "compute_specs" {

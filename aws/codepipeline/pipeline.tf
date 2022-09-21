@@ -23,6 +23,7 @@ resource "aws_codepipeline" "codepipeline" {
               "RepositoryName" = var.stage_source_config.RepositoryName
               "BranchName" = var.stage_source_config.BranchName
               "PollForSourceChanges" = "true"
+              "OutputArtifactFormat" = var.stage_source_config.OutputArtifactFormat
             }
         }
     }

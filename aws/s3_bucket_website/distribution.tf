@@ -19,6 +19,8 @@ module "s3_bucket_website_distribution" {
     lambda_functions = var.lambda_functions
     tags = var.tags
     website_name = var.dns_record_name
+    geo_restrictions_blacklist = var.geo_restrictions_blacklist
+    geo_restrictions_whitelist = var.geo_restrictions_whitelist
 }
 
 resource "aws_s3_bucket_policy" "s3_bucket_website_distribution_policy" {
