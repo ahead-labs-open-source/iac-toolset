@@ -84,10 +84,42 @@ resource "aws_cloudfront_distribution" "m_cloudfront_distribution" {
         minimum_protocol_version = "TLSv1.2_2021"
     }
 
-    restrictions {
-      geo_restriction {
-          restriction_type = "none"
-      }
+    dynamic "restrictions" {
+        for_each = var.geo_restrictions_blacklist == null && var.geo_restrictions_whitelist == null ? [1] : []
+        content {
+            geo_restriction {
+                restriction_type = "none"
+            }
+        }
+    }
+
+    dynamic "restrictions" {
+        for_each = var.geo_restrictions_blacklist != null && var.geo_restrictions_whitelist != null ? [1] : []
+        content {
+            geo_restriction {
+                restriction_type = "none"
+            }
+        }
+    }
+
+    dynamic "restrictions" {
+        for_each = var.geo_restrictions_blacklist != null && var.geo_restrictions_whitelist == null ? [1] : []
+        content {
+            geo_restriction {
+                restriction_type = "blacklist"
+                locations = var.geo_restrictions_blacklist
+            }
+        }
+    }
+
+    dynamic "restrictions" {
+        for_each = var.geo_restrictions_whitelist != null && var.geo_restrictions_blacklist == null ? [1] : []
+        content {
+            geo_restriction {
+                restriction_type = "whitelist"
+                locations = var.geo_restrictions_whitelist
+            }
+        }
     }
 
     dynamic "custom_error_response" {

@@ -8,6 +8,14 @@ variable "description" {
 }
 variable "domain_name" {type = string}
 variable "enabled" {type = bool}
+variable "geo_restrictions_blacklist" {
+    type = list
+    default = null
+}
+variable "geo_restrictions_whitelist" {
+    type = list
+    default = null
+}
 variable "lambda_functions" {
     type = map
     default = {}
