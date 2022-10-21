@@ -33,13 +33,17 @@ variable "lambda_functions" {
     type = map
     default = {}
 }
+variable "redirect_all_requests_to" {
+    type = string
+    default = null
+}
 variable "tags" {
     type = map
     default = {}
 }
 variable "website_index_document" {
     type = string
-    default = "index.html"
+    default = null
 }
 
 output "distribution_id" {

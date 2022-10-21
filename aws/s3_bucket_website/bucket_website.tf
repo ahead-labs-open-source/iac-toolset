@@ -12,6 +12,7 @@ resource "aws_s3_bucket" "s3_bucket_website" {
 
     website {
         index_document = var.website_index_document
+        redirect_all_requests_to = var.redirect_all_requests_to
     }
 }
 
