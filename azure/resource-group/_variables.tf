@@ -66,3 +66,6 @@ variable "tags" {
 output "id" {
   value = azurerm_resource_group.az_resource_group.id
 }
+output "name" {
+  value = azurerm_resource_group.az_resource_group.name  
+}
