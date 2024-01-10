@@ -1,4 +1,5 @@
 variable "business_unit" {
+  description = "Business unit of the resource"
   #   type = map(any)
   #   default = {
   #     name = "Business core"
@@ -6,6 +7,7 @@ variable "business_unit" {
   #   }
 }
 variable "client" {
+  description = "Client of the resource"
   #   type = map(any)
   #   default = {
   #     aheadlabs = {
@@ -18,6 +20,7 @@ variable "client" {
   #   }
 }
 variable "environment" {
+  description = "Environment of the resource"
   #   type = map(any)
   #   default = {
   #     name = "Production"
@@ -28,10 +31,12 @@ variable "environment" {
   #   }
 }
 variable "instance" {
+  description = "Instance of the resource, defaults to 01"
   type    = string
   default = "01"
 }
 variable "location" {
+  description = "Location of the resource"
   #   type = map(any)
   #   default = {
   #     name = "West Europe"
@@ -42,6 +47,7 @@ variable "location" {
   #   }
 }
 variable "project" {
+  description = "Project of the resource"
   #   type = map(any)
   #   default = {
   #     name = "API"
@@ -52,6 +58,7 @@ variable "project" {
   #   }
 }
 variable "resource_type" {
+  description = "Azure resource type"
   #   type = map(any)
   #   default = {
   #     name = "Resource group"
@@ -59,6 +66,7 @@ variable "resource_type" {
   #   }
 }
 variable "tags" {
+  description = "Tags of the resource"
   type    = map(any)
   default = {}
 }
