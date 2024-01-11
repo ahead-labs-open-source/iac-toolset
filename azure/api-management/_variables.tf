@@ -94,19 +94,23 @@ output "id" {
 }
 output "developer_portal_url" {
   description = "The developer portal URL of the API Management Service."
-  value       = azurerm_api_management.az_api_management.developer_portal_url  
+  value       = azurerm_api_management.az_api_management.developer_portal_url
 }
 output "gateway_url" {
   description = "The gateway URL of the API Management Service."
-  value       = azurerm_api_management.az_api_management.gateway_url  
+  value       = azurerm_api_management.az_api_management.gateway_url
 }
 output "gateway_regional_url" {
   description = "The regional gateway URL of the API Management Service."
-  value       = azurerm_api_management.az_api_management.gateway_regional_url  
+  value       = azurerm_api_management.az_api_management.gateway_regional_url
 }
 output "management_api_url" {
   description = "The management API URL of the API Management Service."
   value       = azurerm_api_management.az_api_management.management_api_url
+}
+output "name" {
+  description = "The name of the API Management Service."
+  value       = azurerm_api_management.az_api_management.name
 }
 output "portal_url" {
   description = "The portal URL of the API Management Service."
@@ -114,11 +118,11 @@ output "portal_url" {
 }
 output "private_ip_addresses" {
   description = "The private IP addresses of the API Management Service."
-  value       = azurerm_api_management.az_api_management.private_ip_addresses  
+  value       = azurerm_api_management.az_api_management.private_ip_addresses
 }
 output "public_ip_addresses" {
   description = "The public IP addresses of the API Management Service."
-  value       = azurerm_api_management.az_api_management.public_ip_addresses  
+  value       = azurerm_api_management.az_api_management.public_ip_addresses
 }
 output "scm_url" {
   description = "The SCM URL of the API Management Service."
