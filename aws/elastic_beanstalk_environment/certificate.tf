@@ -1,5 +1,5 @@
 module "eb_application_environment_certificate" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/certificate"
+    source = "github.com/ahead-labs-open-source/iac-toolset.git//aws/certificate"
 
     providers = {
         aws.default = aws.default

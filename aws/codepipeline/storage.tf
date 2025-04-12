@@ -1,5 +1,5 @@
 module "bucket_codepipeline_artifacts" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/s3_bucket"
+    source = "github.com/ahead-labs-open-source/iac-toolset.git//aws/s3_bucket"
 
     providers = {
         aws.default = aws.default

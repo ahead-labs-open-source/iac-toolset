@@ -1,5 +1,5 @@
 module "s3_bucket_website_distribution" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/cloudfront_s3"
+    source = "github.com/ahead-labs-open-source/iac-toolset.git//aws/cloudfront_s3"
 
     providers = {
         aws.default = aws.default

@@ -1,5 +1,5 @@
 module "s3_bucket_trails" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/s3_bucket"
+    source = "github.com/ahead-labs-open-source/terraform-modules.git//aws/s3_bucket"
 
     providers = {
         aws.default = aws.default

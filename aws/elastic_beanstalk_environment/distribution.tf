@@ -1,5 +1,5 @@
 module "eb_application_environment_distribution" {
-    source = "github.com/aheadlabs/terraform-modules.git//aws/cloudfront_custom_origin"
+    source = "github.com/ahead-labs-open-source/iac-toolset.git//aws/cloudfront_custom_origin"
 
     providers = {
         aws.default = aws.default
