@@ -14,6 +14,15 @@ variable "locations" {
         short  = "weu"
       }
     }
+    northeurope = {
+      name = "North Europe"
+      geography = "Ireland"
+      tags = {
+        long   = "northeurope"
+        middle = "northeu"
+        short  = "neu"
+      }
+    }
     spaincentral = {
       name = "Spain central"
       geography = "Madrid, Spain"
