@@ -87,6 +87,16 @@ variable "tags" {
   type        = map(any)
   default     = {}
 }
+variable "identity_type" {
+  description = "The type of identity for the API Management Service. Possible values are: SystemAssigned, UserAssigned, SystemAssigned, UserAssigned"
+  type        = string
+  default     = null
+}
+variable "identity_ids" {
+  description = "A list of User Assigned Identity IDs to assign to the API Management Service"
+  type        = list(string)
+  default     = null
+}
 
 output "id" {
   description = "The ID of the API Management Service."

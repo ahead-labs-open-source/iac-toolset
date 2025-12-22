@@ -5,5 +5,14 @@ resource "azurerm_api_management" "az_api_management" {
     publisher_name      = var.publisher.name
     publisher_email     = var.publisher.email
     sku_name            = var.sku_name
-    tags                = var.tags 
+    tags                = var.tags
+
+    # Identity configuration for Key Vault access
+    dynamic "identity" {
+      for_each = var.identity_type != null ? [1] : []
+      content {
+        type         = var.identity_type
+        identity_ids = var.identity_ids
+      }
+    }
 }
